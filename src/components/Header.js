@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../logo.svg'
-import {Navbar, Container} from 'react-bootstrap/'
+import {Navbar, Container} from 'react-bootstrap'
 const Header = () => {
   return (
     <>

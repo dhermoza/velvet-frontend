@@ -5,10 +5,12 @@ import App from './App';
 import Header from './components/Header'
 import reportWebVitals from './reportWebVitals';
 import  'bootstrap/dist/css/bootstrap.min.css' ;
+import Footer from './components/Footer';
 ReactDOM.render(
   <React.StrictMode>
     <Header/>
     <App />
+    <Footer/>
   </React.StrictMode>,
   document.getElementById('root')
 );
