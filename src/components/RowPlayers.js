@@ -47,7 +47,7 @@ const topPlayers = [
 const RowPlayers = () => {
   return (
     <>
-      <Container>
+      <Container className="p-container">
         <h3 className="t-white">Top Players</h3>
         <Row>
           {topPlayers.map((player) => {

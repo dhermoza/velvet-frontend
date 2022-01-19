@@ -48,3 +48,10 @@
   margin-bottom: 1.5rem;
 }
 
+.p-container{
+  padding: 50px 0px;
+}
+
+.t-center{
+  text-align: center;
+}
