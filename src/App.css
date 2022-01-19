@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.p-text{
+  color: #282c34;
+  font-size: 14px;
+}
+
+.t-white{
+  text-align: start;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.p-container{
+  padding: 50px 0px;
+}
+
+.t-center{
+  text-align: center;
+}
