@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 
 const CardPlayer = ({data}) => {
   return (
-    <Card style={{ width: "8rem" }} >
+    <Card style={{ width: "12rem" }} >
       <Card.Img variant="top" src={data.avatar} rounded/>
       <Card.Body>
         <Card.Title className="p-text" >{data.nickname}</Card.Title>

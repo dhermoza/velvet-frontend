@@ -13,6 +13,7 @@ const Banner = () => {
             developing new habits</p>
           </Col>
         </Row>
+        <br></br>
         <Row>
           <Col>
           <Button variant="primary">Learn More</Button>{' '}
