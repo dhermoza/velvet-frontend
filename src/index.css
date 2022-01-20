@@ -1,5 +1,7 @@
 @import "./css/banner.css";
 @import "./css/footer.css";
+@import "./css/header.css";
+@import "./css/form.css";
 
 
 body {
@@ -15,4 +17,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
