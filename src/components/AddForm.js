@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 const AddForm = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -8,14 +8,14 @@ const AddForm = () => {
   console.log(watch("example"));
 
   return (
-    <Container className="d-flex flex-column justify-content-center">
+    <Container className="d-flex flex-column justify-content-center pb-5">
       <div className="justify-content-center">
         <h1>Add a Player</h1>
       </div>
       <br></br>
       <br></br>
       <div className="d-flex align-items-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <form onSubmit={handleSubmit(onSubmit)} className="form pb-5">
           <Row className="justify-content-between">
             <Col xs="auto">
               <label htmlFor="nickname">Nickname:</label>
@@ -51,8 +51,7 @@ const AddForm = () => {
             </Col>
           </Row>
           <br />
-
-          <input type="submit" className="submitButton"/>
+          <Button type="submit" variant="primary" className="submitButton">Add</Button>{' '}
         </form>
       </div>
     </Container>
