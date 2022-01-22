@@ -2,25 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import CardPlayer from "./CardPlayer";
 
-
 const RowPlayers = () => {
   const [players, setPlayers] = useState();
 
   useEffect(() => {
-    const apiUrl = "http://127.0.0.1:3006/api/v1/players/hall";
-    fetch("apiUrl")
+    const apiUrl = "https://velvet-backend.herokuapp.com/api/v1/players/hall";
+    fetch(apiUrl)
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
       })
       .then((response) => {
-        console.log(response.array, "repsonse");
+        // console.log(response.array, "repsonse");
         setPlayers(response.array);
         // console.log("This is your data", response);
       })
       .catch((error) => console.log(error));
-
   }, []);
   return (
     <>
@@ -29,8 +27,12 @@ const RowPlayers = () => {
         <Row>
           {!players
             ? "sin resultados"
-            : players.map((player) => {
-                return <CardPlayer data={player} />;
+            : !players.map((player) => {
+                return (
+                  <Col>
+                    <CardPlayer data={player} />
+                  </Col>
+                );
               })}
         </Row>
       </Container>

@@ -7,8 +7,12 @@ const PlayerDetail = ({ data }) => {
     <>
       <Container className="p-container">
         <Row>
-          <Col>
             <Card style={{ width: "100%", margin: "0 auto" }}>
+            <Row>
+              <Col>
+                <Card.Img variant="top" src={data.avatar} rounded />
+              </Col>
+              <Col>
               <Card.Body>
                 <Row className="justify-content-between">
                   <Col xs="auto">
@@ -51,8 +55,10 @@ const PlayerDetail = ({ data }) => {
                   Update
                 </Button>{" "} */}
               </Card.Body>
+              </Col>
+              </Row>
+
             </Card>
-          </Col>
         </Row>
       </Container>
     </>
