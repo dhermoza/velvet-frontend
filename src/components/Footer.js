@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container fluid className="footer p-container">
     <Row xs="auto" className="justify-content-center pb-2">
-      <Col><a href="#">About</a></Col>
+      <Col><a href="/aboutus">About</a></Col>
       <Col><a href="#">Legal</a></Col>
       <Col><a href="#">Contact Us</a></Col>
     </Row>

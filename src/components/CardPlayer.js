@@ -11,7 +11,7 @@ const CardPlayer = ({data}) => {
          <p className="p-text">{data.ranking}</p>
          <p className="p-text">{data.status}</p>
         </Card.Text>
-        <Button variant="primary">Go </Button>
+        <Button variant="primary" href="/show">Go </Button>
       </Card.Body>
     </Card>
   );

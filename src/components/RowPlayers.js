@@ -16,7 +16,7 @@ const topPlayers = [
     status: "oro",
     ranking: "109939300",
     avatar:
-      "https://lh3.googleusercontent.com/d/1FvgHhPmYNwruvKSjok1dp-ikpKVD2O5z=s220?authuser=0",
+      "https://lh3.googleusercontent.com/d/17fBzEwLjVC4wbHBi1O64PA-D-i8G_Z4b=s220?authuser=0",
   },
   {
     id: "0003",
@@ -24,7 +24,7 @@ const topPlayers = [
     status: "oro",
     ranking: "953898292",
     avatar:
-      "https://lh3.googleusercontent.com/d/1FvgHhPmYNwruvKSjok1dp-ikpKVD2O5z=s220?authuser=0",
+      "https://lh3.googleusercontent.com/d/1wy_udY0W2rebTfKDYVClfAbWewWqfzmd=s220?authuser=0",
   },
   {
     id: "0004",
@@ -32,7 +32,7 @@ const topPlayers = [
     status: "oro",
     ranking: "9428478382",
     avatar:
-      "https://lh3.googleusercontent.com/d/1FvgHhPmYNwruvKSjok1dp-ikpKVD2O5z=s220?authuser=0",
+      "https://lh3.googleusercontent.com/d/1TUfAaVfZgGee0UKQK8bxJziDKc31Xdet=s220?authuser=0",
   },
   {
     id: "0005",
@@ -40,7 +40,7 @@ const topPlayers = [
     status: "oro",
     ranking: "9099393993",
     avatar:
-      "https://lh3.googleusercontent.com/d/1FvgHhPmYNwruvKSjok1dp-ikpKVD2O5z=s220?authuser=0",
+      "https://lh3.googleusercontent.com/d/1gqJ8yhqsmyQ5sJcLIFGt-DmN_5mDyBu-=s220?authuser=0",
   },
 ];
 

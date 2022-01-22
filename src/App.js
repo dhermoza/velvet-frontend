@@ -1,22 +1,30 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Banner from "./components/Banner";
-import RowPlayers from "./components/RowPlayers";
 import { Stack } from "react-bootstrap";
-import About from "./components/About"
+
+import Home from "./pages/Home"
+import AboutUs from "./pages/AboutUs"
+import Add from "./pages/Add"
+import Error from "./pages/Error"
+import Show from "./pages/Show"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Banner />
-
-        <RowPlayers />
-
-        <About/>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="add" element={<Add />} />
+          <Route path="show" element={<Show />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
+
+
 
 export default App;

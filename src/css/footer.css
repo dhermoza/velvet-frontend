@@ -13,6 +13,7 @@
 }
 .footer a:hover {
   opacity: 1;
+  color: gray;
 }
 .footer .fa-heart {
   color: #D23333;
