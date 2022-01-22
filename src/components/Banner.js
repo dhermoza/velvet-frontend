@@ -16,7 +16,7 @@ const Banner = () => {
         <br></br>
         <Row>
           <Col>
-            <Button variant="primary" href="/aboutus">Learn More</Button>{' '}
+            <Button variant="primary" href="/players">Record of players</Button>{' '}
           </Col>
         </Row>
       </Container>

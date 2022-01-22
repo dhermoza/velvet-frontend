@@ -8,6 +8,7 @@ import Add from "./pages/Add"
 import Error from "./pages/Error"
 import Show from "./pages/Show"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ListPlayers from "./pages/ListPlayers";
 
 function App() {
   return (
@@ -15,9 +16,12 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="add" element={<Add />} />
-          <Route path="show" element={<Show />} />
+          <Route exact
+              path='players/:id' element={<Show />} />
+              <Route exact
+              path='players' element={<ListPlayers />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
