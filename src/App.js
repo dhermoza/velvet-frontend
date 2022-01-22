@@ -39,7 +39,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="add" element={<Add />} />
-          <Route path="show" element={<Show />} />
+          <Route exact
+              path='players/:id' element={<Show />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
