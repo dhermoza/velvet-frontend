@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import CardPlayer from "./CardPlayer";
 const topPlayers = [
@@ -45,18 +45,39 @@ const topPlayers = [
 ];
 
 const RowPlayers = () => {
+  const [players, setPlayers] = useState();
+
+  useEffect(() => {
+    const apiUrl = "http://127.0.0.1:3006/api/v1/players/hall";
+    fetch("http://localhost:3006/api/v1/players/hall")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then((response) => {
+        console.log(response.array, "repsonse");
+        setPlayers(response.array);
+        // console.log("This is your data", response);
+      })
+      .catch((error) => console.log(error));
+    // let response = await fetch('http://localhost:3000/api/v1/players/hall');
+
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error! status: ${response.status}`);
+    // }
+  }, []);
+// console.log(players);
   return (
     <>
       <Container className="p-container">
         <h3 className="t-white">Top Players</h3>
         <Row>
-          {topPlayers.map((player) => {
-            return (
-              <Col>
-                <CardPlayer key={player.id} data={player} />
-              </Col>
-            );
-          })}
+          { !players ? "sin resultados" : (
+            players.map((player) => {
+              return (<CardPlayer data={player}/>)
+            })
+          )}
         </Row>
       </Container>
     </>

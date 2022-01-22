@@ -13,9 +13,31 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      {/* <Routes>
+      
+          <Route
+          exact
+            path='/'
+          >
+            <Home/>
+          </Route>
+          
+          <Route
+          exact
+            path='/about'
+          >
+            <AboutUs/>
+          </Route>
+          <Route
+          exact
+            path='/show'
+          >
+            <AboutUs/>
+          </Route>
+      </Routes> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="add" element={<Add />} />
           <Route path="show" element={<Show />} />
           <Route path="*" element={<Error />} />
