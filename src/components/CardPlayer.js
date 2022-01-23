@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
 const CardPlayer = ({data}) => {
+  console.log(data);
   return (
     <Link to={`/players/${data.id}`}>
       <Card style={{ width: "12rem" }} >

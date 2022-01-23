@@ -14,7 +14,7 @@ const RowPlayers = () => {
         }
       })
       .then((response) => {
-        // console.log(response.array, "repsonse");
+        console.log(response.array, "repsonse");
         setPlayers(response.array);
         // console.log("This is your data", response);
       })
@@ -27,7 +27,7 @@ const RowPlayers = () => {
         <Row>
           {!players
             ? "sin resultados"
-            : !players.map((player) => {
+            : players.map((player) => {
                 return (
                   <Col>
                     <CardPlayer data={player} />
