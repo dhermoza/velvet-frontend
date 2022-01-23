@@ -48,6 +48,7 @@ const TablePlayer = ({columns, data}) => {
          </tr>
        ))}
      </thead>
+     <br></br>
      {/* Apply the table body props */}
      <tbody {...getTableBodyProps()}>
 
@@ -100,7 +101,7 @@ const TablePlayer = ({columns, data}) => {
             setPageSize(Number(e.target.value))
           }}
         >
-          {[10, 25, 50].map(pageSize => (
+          {[10, 20].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
