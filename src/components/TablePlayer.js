@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTable, usePagination, useSortBy } from 'react-table'
 import Loader from './Loader'
-
+import ReactPaginate from 'react-paginate';
 
 const TablePlayer = ({columns, data, current, page_count, loading}) => {
 
-  console.log(columns);
-  console.log(data);
-  console.log(current);
-  console.log(page_count);
-  console.log(loading);
+  const [items, setItems] = useState([]);
   const {
     getTableProps,
     getTableBodyProps,
@@ -27,10 +23,23 @@ const TablePlayer = ({columns, data, current, page_count, loading}) => {
     state: { pageIndex, pageSize},
   } = useTable({ columns, data, manualPagination: true, pageCount: page_count, }, useSortBy, usePagination)
 
-  React.useEffect(() => {
-    fetchData && fetchData({ pageIndex, pageSize })
-  }, [fetchData, pageIndex, pageSize])
+  const fetchItems = async (currentPage) => {
+    const res = await fetch(
+      `https://velvet-backend.herokuapp.com/api/v1/all_players_paginated/${currentPage}`
+    );
+    const data = await res.json();
+    return data;
+  }
 
+  const handlePageClick = async (data) => {
+
+    console.log(data.selected)
+    let currentPage =data.selected + 1;
+    console.log(currentPage)
+    const players = await fetchItems(currentPage);
+    setItems(players)
+    console.log(players)
+  }
   return (
 // apply the table props
 <>
@@ -70,50 +79,26 @@ const TablePlayer = ({columns, data, current, page_count, loading}) => {
      </tbody>
    </table>
 
-    <div className="pagination d-flex justify-content-center">
-        <span className="px-3">
-          Page{' '}<p>
-            {pageIndex + 1} of {pageOptions.length}
-          </p>{' '}
-        </span>
-        <button style={{ height: '50px',  width: '50px' }} onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'《'}
-        </button>{' '}
-        <button style={{ height: '50px', width: '50px' }} onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'〈'}
-        </button>{' '}
-        <button style={{ height: '50px', width: '50px' }} onClick={() => nextPage()} disabled={!canNextPage}>
-          {'〉'}
-        </button>{' '}
-        <button style={{ height: '50px', width: '50px' }} onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'》'}
-        </button>{' '}
+    <ReactPaginate
+      previousLabel = {'Previous'}
+      nextLabel = {'Next'}
+      breakLabel = {'...'}
+      pageCount = {page_count}
+      marginPagesDisplayed = {2}
+      pageRangesDisplayed = {3}
+      onPageChange={handlePageClick}
+      containerClassName={'pagination justify-content-center'}
+      pageClassName={'page-item'}
+      pageLinkClassName={'page-link'}
+      previousClassName={'page-item'}
+      previousLinkClassName={'page-link'}
+      nextClassName={'page-item'}
+      nextLinkClassName={'page-link'}
+      breakClassName={'page-item'}
+      breakLinkClassName={'page-link'}
+      activeClassName={'active'}
 
-        <span className="px-3">
-          Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{ width: '80px' }}
-          />
-        </span>{' '}
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-  </div>
+    />
    </>
   )
 }

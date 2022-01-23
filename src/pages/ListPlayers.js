@@ -42,7 +42,7 @@ const ListPlayers = () => {
   );
 
   useEffect(() => {
-    const apiUrl = "http://localhost:3001/api/v1/all_players_paginated/"+current;
+    const apiUrl = "https://velvet-backend.herokuapp.com/api/v1/all_players_paginated/"+current;
     fetch(apiUrl)
       .then(response =>
         {if (response.ok) {
