@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import TablePlayer from "../components/TablePlayers";
+import TablePlayer from "../components/TablePlayer";
 
 const ListPlayers = () => {
   const [dataState, setdataState] = useState([]);

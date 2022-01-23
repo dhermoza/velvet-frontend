@@ -31,6 +31,7 @@ const RowPlayers = () => {
                 return (
                   <Col>
                     <CardPlayer data={player} />
+                    <br></br>
                   </Col>
                 );
               })}
