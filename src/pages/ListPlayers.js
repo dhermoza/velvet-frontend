@@ -3,14 +3,20 @@ import { Container, Row, Col } from "react-bootstrap";
 import TablePlayer from "../components/TablePlayer";
 
 const ListPlayers = () => {
-  const [dataState, setdataState] = useState([]);
+  const dataState = {
+    loading: true,
+    playerandPageInfo: {},
+    current: 1,
+    page_count: 1
+  };
+  const [{ loading, playerandPageInfo, current, page_count}, setdataState] = useState({...dataState});
 
-  const [paginaState, setpaginaState] = useState([]);
-  const [paginasState, setpaginasState] = useState([]);
+  //const [paginaState, setpaginaState] = useState([]);
+  //const [paginasState, setpaginasState] = useState([]);
   //const state  = { loading: true, playerIndex: []}
   const data = React.useMemo(() => [], []);
-  const pagina = React.useMemo(() => [], []);
-  const paginas = React.useMemo(() => [], []);
+  //const pagina = React.useMemo(() => [], []);
+  //const paginas = React.useMemo(() => [], []);
   //console.log(data, "dataaa");
 
   const columns = React.useMemo(
@@ -36,7 +42,7 @@ const ListPlayers = () => {
   );
 
   useEffect(() => {
-    const apiUrl = "http://localhost:3001/api/v1/players.json";
+    const apiUrl = "http://localhost:3001/api/v1/all_players_paginated/"+current;
     fetch(apiUrl)
       .then(response =>
         {if (response.ok) {
@@ -44,10 +50,10 @@ const ListPlayers = () => {
         }
       })
       .then((response) => {
-       console.log(response);
+        console.log(response);
         console.log(response.players);
-        console.log(response.page);
-        console.log(response.pages);
+        console.log(response.current);
+        console.log(response.page_count);
         const arrayData = response.players.map((ele) => {
          return data.push({
             col1: ele.id,
@@ -56,12 +62,8 @@ const ListPlayers = () => {
             col4: ele.ranking,
           });
         });
-        setpaginaState(response.page);
-        setpaginasState(response.pages);
-        setdataState(arrayData);
+        setdataState({ drinkAndPageInfo: arrayData, loading: false, current: response.current, page_count: response.page_count});
         console.log("This is your data", data);
-        console.log("page", paginaState);
-        console.log("pages", paginasState);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -71,7 +73,7 @@ const ListPlayers = () => {
       <Container className="p-container">
         <h3 className="p-text">List of players</h3>
         <Row>
-          <TablePlayer data={data} columns={columns} pagina={pagina} paginas={paginas}/>
+          <TablePlayer data={data} columns={columns} current={current} page_count={page_count} loading={loading}/>
         </Row>
       </Container>
     </>

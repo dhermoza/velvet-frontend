@@ -1,21 +1,21 @@
 import React from "react";
 import { useTable, usePagination, useSortBy } from 'react-table'
+import Loader from './Loader'
 
-const TablePlayer = ({columns, data, pagina, paginas}) => {
+
+const TablePlayer = ({columns, data, current, page_count, loading}) => {
 
   console.log(columns);
   console.log(data);
-  console.log(pagina);
-  console.log(paginas);
+  console.log(current);
+  console.log(page_count);
+  console.log(loading);
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -25,8 +25,11 @@ const TablePlayer = ({columns, data, pagina, paginas}) => {
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize},
-  } = useTable({ columns, data }, useSortBy, usePagination)
+  } = useTable({ columns, data, manualPagination: true, pageCount: page_count, }, useSortBy, usePagination)
 
+  React.useEffect(() => {
+    fetchData && fetchData({ pageIndex, pageSize })
+  }, [fetchData, pageIndex, pageSize])
 
   return (
 // apply the table props
@@ -66,6 +69,7 @@ const TablePlayer = ({columns, data, pagina, paginas}) => {
       }))}
      </tbody>
    </table>
+
     <div className="pagination d-flex justify-content-center">
         <span className="px-3">
           Page{' '}<p>
