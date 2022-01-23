@@ -1,9 +1,12 @@
 import React from "react";
 import { useTable, usePagination, useSortBy } from 'react-table'
 
-const TablePlayer = ({columns, data}) => {
+const TablePlayer = ({columns, data, pagina, paginas}) => {
 
-
+  console.log(columns);
+  console.log(data);
+  console.log(pagina);
+  console.log(paginas);
   const {
     getTableProps,
     getTableBodyProps,
@@ -21,7 +24,7 @@ const TablePlayer = ({columns, data}) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize},
   } = useTable({ columns, data }, useSortBy, usePagination)
 
 
@@ -48,7 +51,6 @@ const TablePlayer = ({columns, data}) => {
          </tr>
        ))}
      </thead>
-     <br></br>
      {/* Apply the table body props */}
      <tbody {...getTableBodyProps()}>
 
