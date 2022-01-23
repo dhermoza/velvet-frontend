@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTable, usePagination, useSortBy } from 'react-table'
-import Loader from './Loader'
 import ReactPaginate from 'react-paginate';
 
 const TablePlayer = ({columns, data, current, page_count, loading}) => {
@@ -12,14 +11,6 @@ const TablePlayer = ({columns, data, current, page_count, loading}) => {
     headerGroups,
     prepareRow,
     page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
     state: { pageIndex, pageSize},
   } = useTable({ columns, data, manualPagination: true, pageCount: page_count, }, useSortBy, usePagination)
 
@@ -76,6 +67,17 @@ const TablePlayer = ({columns, data, current, page_count, loading}) => {
           </tr>
         )
       }))}
+      <tr>
+            {loading ? (
+              // Use our custom loading state to show a loading indicator
+              <td colSpan="10000">Loading...</td>
+            ) : (
+              <td colSpan="10000">
+                Showing {page.length} of ~{page_count * pageSize}{' '}
+                results
+              </td>
+            )}
+      </tr>
      </tbody>
    </table>
 
