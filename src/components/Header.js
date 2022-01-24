@@ -1,7 +1,6 @@
 import React from "react";
 import logo from '../logo.svg'
-import {Navbar, Container} from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import {Navbar, Container, Nav} from 'react-bootstrap'
 
 const Header = () => {
   return (
@@ -19,9 +18,9 @@ const Header = () => {
               />
             </div>
             <div className="d-flex justify-content-end">
-              <l className="navbar-brand" href="/">Home</l>
-              <a className="navbar-brand" href="/about">About Us</a>
-              <a className="navbar-brand" href="/add">Add a Player</a>
+              <Nav.Link className="navbar-brand" href="/">Home</Nav.Link>
+              <Nav.Link className="navbar-brand" href="/about">About Us</Nav.Link>
+              <Nav.Link className="navbar-brand" href="/add">Add a Player</Nav.Link>
             </div>
           </Navbar>
         </Container>

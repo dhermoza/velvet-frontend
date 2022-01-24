@@ -5,10 +5,16 @@ import TablePlayer from "../components/TablePlayers";
 import useDataSearch from "../hooks/useSearch";
 import Axios from "axios";
 import PaginationControlled from "../components/Pagination";
+import useFilters from "../hooks/useFilters";
+import Filters from "../components/Filters";
 
 const ListPlayers = () => {
   const [query, setQuery] = useState("");
   const [pageNum, setPageNum] = useState(1);
+
+  const [data, setData] = useState('');
+  // const [loading, setLoading] = useState(true);
+
   const columns = React.useMemo(
     () => [
       {
@@ -27,8 +33,8 @@ const ListPlayers = () => {
     []
   );
 
-  const {dataState, loading, pageCount } = useDataSearch(query, pageNum, setPageNum)
-
+  const {dataState, loading, pageCount, setdataState, setPageCount } = useDataSearch(query, pageNum, setPageNum)
+  // const {data} = useFilters(status, setStatus, ranking, setRanking, data, setData)
 
   return (
     <>
@@ -38,6 +44,9 @@ const ListPlayers = () => {
           <Col>
             <Search query={query} setQuery={setQuery} />
           </Col>
+          <Col>
+          <Filters data={dataState} setData={setdataState} pageCount={pageCount} setPageCount={setPageCount} pageNum={pageNum} setPageNum={setPageNum}/>
+        </Col>
           <Col>
           <PaginationControlled
             page={pageNum}
