@@ -99,8 +99,8 @@ useEffect(() => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"ASC"}>De mayor a menor Ranking</MenuItem>
-          <MenuItem value={"DESC"}>De menor a mayor Ranking</MenuItem>
+          <MenuItem value={"DESC"}>De mayor a menor Ranking</MenuItem>
+          <MenuItem value={"ASC"}>De menor a mayor Ranking</MenuItem>
         </Select>
       </FormControl>
     </div>
