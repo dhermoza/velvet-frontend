@@ -13,7 +13,7 @@ const AddForm = () => {
   // add post request
   const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players`;
   
-  const saveRecord = (data) => {
+  const saveRecord = (dataState) => {
     Axios({
       method: "POST",
       url: apiUrl,

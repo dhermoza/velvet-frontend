@@ -15,11 +15,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="add" element={<Add />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<AboutUs />} />
+          <Route exact path="/add" element={<Add />} />
           <Route exact path="players/:id" element={<Show />} />
-          <Route exact path="players" element={<ListPlayers />} />
+          <Route exact path="/players" element={<ListPlayers />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
