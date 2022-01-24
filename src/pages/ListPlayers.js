@@ -7,13 +7,8 @@ import Axios from "axios";
 import PaginationControlled from "../components/Pagination";
 
 const ListPlayers = () => {
-  const [dataState, setdataState] = useState([]);
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(true);
   const [pageNum, setPageNum] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
-  const data = React.useMemo(() => dataState, []);
-  // console.log(data, "dataaa");
   const columns = React.useMemo(
     () => [
       {
@@ -32,54 +27,8 @@ const ListPlayers = () => {
     []
   );
 
-  useEffect(() => {
-    setPageNum(1);
-  }, []);
+  const {dataState, loading, pageCount } = useDataSearch(query, pageNum, setPageNum)
 
-  useEffect(() => {
-    let dataInitial = [];
-
-    const apiUrl = `http://localhost:3006/api/v1/players`;
-
-    console.log(query, "aqui");
-    if (query === "") {
-      Axios({
-        method: "GET",
-        url: apiUrl,
-        params: { page: pageNum },
-      })
-        .then(async (response) => {
-
-          await response.data.players.map((ele) => {
-            return dataInitial.push([
-              ele.id,
-              ele.nickname,
-              ele.status,
-              ele.ranking,
-            ]);
-          });
-          setPageCount(response.data.page_count);
-          setdataState(dataInitial);
-        })
-        .catch((error) => console.log(error));
-    }
-    setLoading(true);
-
-    Axios({
-      method: "GET",
-      url: apiUrl,
-      params: { query: query, page: pageNum },
-    }).then(async (res) => {
-      await res.data.players.map((ele) => {
-        const arr = [ele.id, ele.nickname, ele.status, ele.ranking];
-        return dataInitial.push(arr);
-      });
-      setLoading(false);
-      setPageCount(res.data.page_count);
-
-      return setdataState(dataInitial);
-    });
-  }, [query, pageNum]);
 
   return (
     <>
