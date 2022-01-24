@@ -39,7 +39,7 @@ const ListPlayers = () => {
   useEffect(() => {
     let dataInitial = [];
 
-    const apiUrl = `http://localhost:3006/api/v1/players`;
+    const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players`;
 
     console.log(query, "aqui");
     if (query === "") {
