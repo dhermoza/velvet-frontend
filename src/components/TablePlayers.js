@@ -16,7 +16,6 @@ const TablePlayer = ({ columns, data }) => {
         <tbody>
           {
             data.map((ele) => {
-              console.log(ele);
               return(
                 <tr>
                  {ele.map((el) => {

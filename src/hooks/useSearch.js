@@ -16,8 +16,8 @@ useEffect(() => {
 useEffect(() => {
   let dataInitial = [];
 
-  console.log(query, "aqui");
-  if (query === "") {
+  // console.log(query, "aqui");
+  if (query !== "") {
     Axios({
       method: "GET",
       url: apiUrl,
@@ -56,7 +56,7 @@ useEffect(() => {
   });
 }, [query, pageNum]);
 
-return { dataState, loading, pageCount }
+return { dataState, loading, pageCount, setdataState, setPageCount }
 };
 
 export default useDataSearch;
