@@ -1,79 +1,102 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row} from "react-bootstrap";
-import TablePlayer from "../components/TablePlayer";
+import { Container, Row, Col } from "react-bootstrap";
+import Search from "../components/Search";
+import TablePlayer from "../components/TablePlayers";
+import useDataSearch from "../hooks/useSearch";
+import Axios from "axios";
+import PaginationControlled from "../components/Pagination";
 
 const ListPlayers = () => {
-  const dataState = {
-    loading: true,
-    playerandPageInfo: {},
-    current: 1,
-    page_count: 1
-  };
-  const [{ loading, playerandPageInfo, current, page_count}, setdataState] = useState({...dataState});
-
-  //const [paginaState, setpaginaState] = useState([]);
-  //const [paginasState, setpaginasState] = useState([]);
-  //const state  = { loading: true, playerIndex: []}
-  const data = React.useMemo(() => [], []);
-  //const pagina = React.useMemo(() => [], []);
-  //const paginas = React.useMemo(() => [], []);
-  //console.log(data, "dataaa");
-
+  const [dataState, setdataState] = useState([]);
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [pageNum, setPageNum] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+  const data = React.useMemo(() => dataState, []);
+  // console.log(data, "dataaa");
   const columns = React.useMemo(
     () => [
       {
         Header: "#",
-        accessor: "col1", // accessor is the "key" in the data
       },
       {
         Header: "Nickname",
-        accessor: "col2",
       },
       {
         Header: "Status",
-        accessor: "col3", // accessor is the "key" in the data
       },
       {
         Header: "Ranking",
-        accessor: "col4",
       },
     ],
     []
   );
 
   useEffect(() => {
-    const apiUrl = "https://velvet-backend.herokuapp.com/api/v1/all_players_paginated/"+current;
-    fetch(apiUrl)
-      .then(response =>
-        {if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((response) => {
-        console.log(response);
-        console.log(response.players);
-        console.log(response.current);
-        console.log(response.page_count);
-        const arrayData = response.players.map((ele) => {
-         return data.push({
-            col1: ele.id,
-            col2: ele.nickname,
-            col3: ele.status,
-            col4: ele.ranking,
-          });
-        });
-        setdataState({ drinkAndPageInfo: arrayData, loading: false, current: response.current, page_count: response.page_count});
-        console.log("This is your data", data);
-      })
-      .catch((error) => console.log(error));
+    setPageNum(1);
   }, []);
+
+  useEffect(() => {
+    let dataInitial = [];
+
+    const apiUrl = `http://localhost:3006/api/v1/players`;
+
+    console.log(query, "aqui");
+    if (query === "") {
+      Axios({
+        method: "GET",
+        url: apiUrl,
+        params: { page: pageNum },
+      })
+        .then(async (response) => {
+
+          await response.data.players.map((ele) => {
+            return dataInitial.push([
+              ele.id,
+              ele.nickname,
+              ele.status,
+              ele.ranking,
+            ]);
+          });
+          setPageCount(response.data.page_count);
+          setdataState(dataInitial);
+        })
+        .catch((error) => console.log(error));
+    }
+    setLoading(true);
+
+    Axios({
+      method: "GET",
+      url: apiUrl,
+      params: { query: query, page: pageNum },
+    }).then(async (res) => {
+      await res.data.players.map((ele) => {
+        const arr = [ele.id, ele.nickname, ele.status, ele.ranking];
+        return dataInitial.push(arr);
+      });
+      setLoading(false);
+      setPageCount(res.data.page_count);
+
+      return setdataState(dataInitial);
+    });
+  }, [query, pageNum]);
 
   return (
     <>
       <Container className="p-container">
         <h3 className="p-text">List of players</h3>
         <Row>
-          <TablePlayer data={data} columns={columns} current={current} page_count={page_count} loading={loading}/>
+          <Search query={query} setQuery={setQuery} />
+        </Row>
+        <Row>
+          <TablePlayer data={dataState} columns={columns} />
+        </Row>
+        <Row>
+          <PaginationControlled
+            page={pageNum}
+            setPage={setPageNum}
+            count={pageCount}
+          />
         </Row>
       </Container>
     </>
