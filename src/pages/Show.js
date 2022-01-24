@@ -17,7 +17,7 @@ const Show = () => {
         }
       })
       .then((response) => {
-        setuniquePlayer(response);
+        setuniquePlayer(response.data);
         // console.log("This is your data", response);
       })
       .catch((error) => console.log(error));

@@ -1,11 +1,31 @@
 import React from "react";
+import Axios from "axios";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
 const AddForm = () => {
+  const [dataState, setDataState] = React.useState(null);
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  // const onSubmit = data => setData(data);
   console.log(watch("example"));
+
+  // add post request
+  const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players`;
+  
+  const saveRecord = (data) => {
+    Axios({
+      method: "POST",
+      url: apiUrl,
+      data: { 
+        ...dataState 
+      },
+    })
+    .then((response) => {
+      setDataState(response.data);
+    })
+    .catch((error) => console.log(error));
+  }
 
   return (
     <Container className="d-flex flex-column justify-content-center pb-5">
@@ -15,7 +35,7 @@ const AddForm = () => {
       <br></br>
       <br></br>
       <div className="d-flex align-items-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="form pb-5">
+        <form onSubmit={handleSubmit(saveRecord)} className="form pb-5">
           <Row className="justify-content-between">
             <Col xs="auto">
               <label htmlFor="nickname">Nickname:</label>
