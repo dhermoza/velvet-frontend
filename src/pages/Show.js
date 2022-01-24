@@ -34,7 +34,7 @@ const Show = () => {
         <br></br>
         <h2 className="pb-3">Record: {`Player ${uniquePlayer.id}`}</h2>
         <div className="d-flex justify-content-center pb-5">
-         
+
           <div className="text-align-start">
             <br></br>
             {!uniquePlayer ? (
