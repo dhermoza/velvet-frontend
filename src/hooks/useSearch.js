@@ -3,7 +3,7 @@ import Axios from "axios";
 
 const useDataSearch = (query, pageNum, setPageNum) => {
   console.log(query, "query");
-  const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players?query=${query}`;
+  const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players`;
 
 const [dataState, setdataState] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,8 +15,6 @@ useEffect(() => {
 
 useEffect(() => {
   let dataInitial = [];
-
-  const apiUrl = `http://localhost:3006/api/v1/players`;
 
   console.log(query, "aqui");
   if (query === "") {

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const PlayerDetail = ({ data }) => {
-  console.log(data);
+  console.log(data.data);
   return (
     <>
       <Container className="p-container">
