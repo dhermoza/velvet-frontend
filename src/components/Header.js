@@ -1,6 +1,7 @@
 import React from "react";
 import logo from '../logo.svg'
 import {Navbar, Container} from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -18,7 +19,7 @@ const Header = () => {
               />
             </div>
             <div className="d-flex justify-content-end">
-              <a className="navbar-brand" href="/">Home</a>
+              <l className="navbar-brand" href="/">Home</l>
               <a className="navbar-brand" href="/about">About Us</a>
               <a className="navbar-brand" href="/add">Add a Player</a>
             </div>
