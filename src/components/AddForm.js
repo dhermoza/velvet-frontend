@@ -2,29 +2,42 @@ import React from "react";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
+
 
 const AddForm = () => {
   const [dataState, setDataState] = React.useState(null);
-
+  const [message, setMessage] = React.useState('');
+  const navigate = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const onSubmit = data => setData(data);
   console.log(watch("example"));
 
   // add post request
   const apiUrl = `https://velvet-backend.herokuapp.com/api/v1/players`;
-  
+
   const saveRecord = (dataState) => {
     Axios({
       method: "POST",
       url: apiUrl,
-      data: { 
-        ...dataState 
+      data: {
+        ...dataState
       },
     })
     .then((response) => {
       setDataState(response.data);
+      console.log(response.id)
     })
     .catch((error) => console.log(error));
+    setMessage(`Player added`);
+    swal({
+      title: "Good job!",
+      text: "Player Added",
+      icon: "success",
+    });
+    navigate('/');
+
   }
 
   return (
