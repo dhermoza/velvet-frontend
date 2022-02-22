@@ -10,7 +10,7 @@ const Home = () => (
       <header className="App-header">
         <Banner />
         <RowPlayers />
-        <About />
+        {/* <About /> */}
       </header>
     </div>
 );
